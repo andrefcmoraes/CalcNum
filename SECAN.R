@@ -13,13 +13,13 @@ x1 <- as.integer(readline(prompt="Insira um valor secundário pertencente ao int
 x2 <- (x0*F(x1)-x1*F(x0))/(F(x1)-F(x0)) 
 
 erro <- abs(x2 - x1)
-it = 0
+it <- 0
 
 while (erro > 0.0001) {
   x2 <- (x0*F(x1)-x1*F(x0))/(F(x1)-F(x0))
   erro <- abs(x2 - x1)
   x1 <- x2
-  it = it + 1
+  it <- it + 1
 }
 print("----------Solução----------")
 print(x2)
