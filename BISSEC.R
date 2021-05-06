@@ -4,11 +4,11 @@
 # Created on: 03/05/2021
 
 F <- function(x) {
-      out <- x-1 #AQUI VOCÊ ESCREVE A FUNÇÃO
+      out <- x ^ 3 - 10*x #AQUI VOCÊ ESCREVE A FUNÇÃO
   return(out)
 }
 tolerancia <- function(a0,b0,eps) {
-  out <- (log(b0 - a0)-log(eps)) %/% log(2)
+  out <- (log(abs(b0 - a0))-log(eps)) %/% log(2)
   return(out)
 }
 
@@ -22,7 +22,7 @@ temp.a <- a
 b <- as.integer(readline(prompt="Insira o valor final do intervalo: "))
 temp.b <- b
 erro <- as.numeric(readline("Defina o valor aproximado para o erro? "))
-it = tolerancia(a,b,erro)+1
+it = abs(tolerancia(a,b,erro)+1)
 m0 <- (a + b)/2
 
 for (i in 1:it) {
@@ -36,6 +36,6 @@ for (i in 1:it) {
     a <- m0
   }
 }
-print(paste0("o numero estimado necessário de iterações foi de: ",
+print(paste0("o numero estimado necessário de iterações foi de ",
              it," e o valor aproximado da raiz no intervalo ",
              temp.a, " e ", temp.b, " é: ",m0))
