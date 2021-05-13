@@ -21,10 +21,13 @@ a <- as.integer(readline(prompt="Insira o valor inicial do intervalo: "))
 temp.a <- a
 b <- as.integer(readline(prompt="Insira o valor final do intervalo: "))
 temp.b <- b
-erro <- as.numeric(readline("Defina o valor aproximado para o erro? "))
+erro <- as.numeric(readline("Defina o valor aproximado para a precisão: "))
+itmax <- as.numeric(readline("Defina o valor max de it: "))
 it = abs(tolerancia(a,b,erro)+1)
 m0 <- (a + b)/2
-
+if (it>itmax){
+  it <- itmax
+}
 for (i in 1:it) {
   m0 <- (a + b)/2
   if (sinal(m0) * sinal(a) < 0) {

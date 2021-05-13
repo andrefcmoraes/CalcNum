@@ -4,21 +4,26 @@
 # Created on: 04/05/2021
 
 F <- function(x) {
-  out <- x ^ 3 - 10*x
+  out <- 2*cos(x) - exp(x)/2 #defina a equação
   return(out)
 }
 
-DF <- function(x) {
-  out <- 3*x^2-10
+tol <- as.numeric(readline("Defina o valor de tolerância: "))
+S <- function(x,h) {
+  out <- ( - F(x+2*h) + 8*F(x+h) - 8*F(x-h) + F(x-2*h)) / (12*h)
   return(out)
+}
+
+L <- function(x,h) {
+  out <- (16*S(x,h)-S(x,2*h))/15
 }
 
 x0 <- as.integer(readline(prompt = "Insira o valor inicial do intervalo: "))
-x1 <- x0 - F(x0)/DF(x0)
+x1 <- x0 - F(x0)/L(x0,tol)
 erro <- abs(x1 - x0)
 count <- 0
-while (erro > 0.00000001) {
-  x1 <- x0 - F(x0)/DF(x0)
+while (erro > tol) {
+  x1 <- x0 - F(x0)/L(x0,tol)
   erro <- abs(x1 - x0)
   x0 <- x1
   count <- count + 1
