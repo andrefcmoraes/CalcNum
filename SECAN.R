@@ -10,12 +10,13 @@ F <- function(x) {
 
 x0 <- as.integer(readline(prompt="Insira um valor inicial pertencente ao intervalo: "))
 x1 <- as.integer(readline(prompt="Insira um valor secundário pertencente ao intervalo: "))
+tol <- as.numeric(readline("Defina o valor de tolerância: "))
 x2 <- (x0*F(x1)-x1*F(x0))/(F(x1)-F(x0)) 
 
 erro <- abs(x2 - x1)
 it <- 0
 
-while (erro > 0.0001) {
+while (erro > tol) {
   x2 <- (x0*F(x1)-x1*F(x0))/(F(x1)-F(x0))
   erro <- abs(x2 - x1)
   x1 <- x2
